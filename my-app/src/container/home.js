@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {launch} from '../action'
+import Shoppinglist from './shopping-list'
 class Home extends Component{
     componentDidMount(){
         launch()
     }
     render() { 
         return (
-            <div>home</div>
+            <Fragment>
+                <Shoppinglist/>
+            </Fragment>
           );
     }
 }

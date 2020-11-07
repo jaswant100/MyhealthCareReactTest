@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, {Suspense,Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import '../node_modules/foundation-sites/dist/css/foundation.min.css'
@@ -6,7 +6,7 @@ import Home from './container/home';
 import Cart from './container/cart'
 import Header from './container/header'
 import reportWebVitals from './reportWebVitals';
-import {Provider} from 'react-redux'
+import {Provider} from 'react-redux';
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Router,Route,Switch } from 'react-router-dom';
@@ -14,21 +14,23 @@ import thunk from "redux-thunk";
 import {allreducer} from './reducer'
 import { applyMiddleware, createStore } from 'redux';
 import { createBrowserHistory } from 'history';
+import { Footer } from './container/footer';
 const History =createBrowserHistory();
 const middleware= applyMiddleware(thunk,createLogger());
 export const Store=createStore(allreducer,composeWithDevTools(middleware))
 ReactDOM.render(
   <Provider store={Store}>
     <Router history ={History}>
-      <div>
+      <Fragment>
         <Header/>
         <Suspense fallback={<p>Loading..</p>}>
-        <Switch>
-        <Route exact={true} path="/" component={Home}/>
-        <Route path="/cart" component={Cart}/>
-        </Switch>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/cart" component={Cart}/>
+          </Switch>
         </Suspense>
-    </div>
+        <Footer/>
+    </Fragment>
     </Router>
   </Provider>,
   document.getElementById('root')

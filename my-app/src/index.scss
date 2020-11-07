@@ -11,4 +11,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.top-bar{background-color:blue;height:50px}
+footer{text-align:center;color:white;background-color:#4269ea; padding:10px}
+.top-bar {
+  background-color: #4269ea !important;
+
+  ul {
+    background-color: transparent !important;
+  }
+
+  height: 50px;
+
+  li {
+    display: flex;
+    align-items: center;
+
+    .badge {
+      position: absolute;
+    }
+  }
+}
+
+.ListContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  .card {
+    width: 350px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    flex: 1 1 350px;
+
+    img {
+      height: 200px;
+    }
+
+    .card-divider {
+      background: none;
+    }
+
+    .Sactual {
+      padding-right: 5px;
+    }
+
+    .Sdisplay {
+      text-decoration: line-through;
+    }
+
+    .Sdiscount {
+      color: #7ea25d;
+      float: right;
+    }
+
+    .cart {
+      background-color: #f4ab2c;
+      color: black;
+      padding: 10px;
+      width: 200px;
+      border-radius: 10px;
+      margin: auto
+    }
+  }
+}

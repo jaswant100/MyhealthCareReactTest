@@ -4,7 +4,10 @@ class Cart extends Component {
     state = {  }
     render() { 
         return (
-        <div className="row">cart</div> 
+        <div className="row">
+            <div className="column large-10">hi</div>
+            <div className="column large-10"></div>
+        </div>
         );
     }
 }

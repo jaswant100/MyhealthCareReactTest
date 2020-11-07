@@ -6,5 +6,12 @@ fetch('https://my-json-server.typicode.com/prograk/demo/items').then(res=>res.js
         type:'Get',
         payload:data
     })
-)
+) 
+}
+export const addCart=(cartid)=>{
+    Store.dispatch({
+        type:'cartGet',
+        payload:cartid
+    })
+
 }
