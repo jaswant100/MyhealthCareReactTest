@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {SetFilterHighLow} from '../action';
 class Filtersearch extends Component {
     constructor(props) {
         super(props);
@@ -6,12 +7,12 @@ class Filtersearch extends Component {
     }
     render() { 
         return (
-            <React.Fragment>
-            <div>Sort By:</div>
-            <button>Price : Low to High</button>
-            <button>Price : High to Low</button>
-            <button>Discount</button>
-            </React.Fragment>
+            <div className="filterContainer">
+            <span>Sort By:</span>
+            <button className="D_btnSort" onClick={()=>SetFilterHighLow('Desc')}>Price - High Low</button>
+            <button className="D_btnSort" onClick={()=>SetFilterHighLow('Asc')}>Price - Low High</button>
+            <button className="D_btnSort" onClick={()=>SetFilterHighLow('Discount')}>Discount</button>
+            </div>
        );
     }
 }

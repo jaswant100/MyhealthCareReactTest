@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import '../node_modules/foundation-sites/dist/css/foundation.min.css'
 import Home from './container/home';
-import Cart from './container/cart'
+import ShoppingCart from './container/cart'
 import Header from './container/header'
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
@@ -26,7 +26,8 @@ ReactDOM.render(
         <Suspense fallback={<p>Loading..</p>}>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path="/cart" component={Cart}/>
+            <Route path="/home" component={Home}/>
+            <Route path="/cart" component={ShoppingCart}/>
           </Switch>
         </Suspense>
         <Footer/>

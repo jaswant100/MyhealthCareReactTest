@@ -11,7 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.filterContainer{
+  padding:20px;
+  button{
+    span{margin-right: 10px;}
+      &.D_btnSort{pointer-events: initial; display:inline-block; margin-right: 10px;color: grey;
+      &:focus{border:none}
+      }
+  }
+}
 footer{text-align:center;color:white;background-color:#4269ea; padding:10px}
+input[name="search"]{display: none}
 .top-bar {
   background-color: #4269ea !important;
 
@@ -72,4 +82,25 @@ footer{text-align:center;color:white;background-color:#4269ea; padding:10px}
       margin: auto
     }
   }
+}
+.cartContiner{
+  border: 1px solid grey;
+  padding: 15px;
+  height: 130px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: space-between;
+  .itemName{
+      max-width:250px;
+      width:100%
+
+  }
+  img{width:100px}
+  .price{color:black; display: inline;}
+  .discount{color:green; float: right;}
+  button{color:black;text-transform: uppercase;text-decoration: none;    background: none;
+      border: none;}
+      .CountContainer{
+          button{border: 1px solid grey;border-radius: 50%;}
+      }
 }

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import {launch} from '../action'
-import Shoppinglist from './shopping-list'
+import Shoppinglist from './shopping-list';
+import Filtersearch from './filtersearch'
 class Home extends Component{
     componentDidMount(){
         launch()
@@ -8,6 +9,7 @@ class Home extends Component{
     render() { 
         return (
             <Fragment>
+                <Filtersearch/>
                 <Shoppinglist/>
             </Fragment>
           );

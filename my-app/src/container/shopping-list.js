@@ -5,17 +5,62 @@ class Shoppinglist extends Component {
     constructor(props) {
         super(props);
         this.state = {}
+      
     }
+
     addcart(cartid){
-        let cart=this.props.Glist.filter(data=>data.id == cartid);
+        let {Glist}=this.props
+        let cart=Glist.filter(data=>data.id == cartid);
         addCart(cart[0])
-        //console.log(cart)
     }
     onload(){
-        if (!this.props.Glist && this.props.Glist instanceof Array && this.props.Glist.length)
-          return <p>...Loading</p>;
-          console.log(this.props.Glist)
-        return this.props.Glist.map((data,i)=>{
+        let {Glist,SortRatio, Search}=this.props
+        if (!Glist && Glist instanceof Array && Glist.length)
+        return <p>...Loading</p>;
+        let  SearchFinalist=Glist;
+        if(Search.length > 0){
+        SearchFinalist = Glist.filter((user, i) => {
+            if (!!Search.length) {
+                console.log(user.name)
+              return user.name.indexOf(Search) !== -1;
+            } else {
+              return user;
+            }
+          });
+          console.log(SearchFinalist)
+        }
+        if(SortRatio.length > 0){
+          SearchFinalist= SearchFinalist.sort((a, b)=> {
+            if (SortRatio === 'Asc'){
+                if (a.price.actual < b.price.actual) {
+                  return -1;
+                }
+                 if (a.price.actual > b.price.actual) {
+                  return 1;
+                } 
+              }
+              else if(SortRatio === 'Desc'){
+                if (a.price.actual < b.price.actual) {
+                  return 1;
+                }
+                 if (a.price.actual > b.price.actual) {
+                  return -1;
+                } 
+              }
+              else if(this.props.SortRatio === 'Discount'){
+                if (a.discount < b.discount) {
+                  return -1;
+                }
+                 if (a.discount > b.discount) {
+                  return 1;
+                } 
+              }
+              return 0;
+            })
+            console.log(SearchFinalist)
+        }
+          //console.log(Glist)
+        return SearchFinalist.map((data,i)=>{
              return(
             <div className="card" key={i}>
             <img src={data.image}/>
@@ -42,5 +87,7 @@ class Shoppinglist extends Component {
 }
 const mapStateToProps=(state)=>({
     Glist:state.list.list,
+    SortRatio:state.list.Sort,
+    Search:state.list.Search
 })
 export default connect(mapStateToProps)(Shoppinglist);
