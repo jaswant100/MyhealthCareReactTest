@@ -23,12 +23,14 @@ ReactDOM.render(
     <Router history ={History}>
       <Fragment>
         <Header/>
-        <Suspense fallback={<p>Loading..</p>}>
-          <Switch>
-            <Route exact path="/" component={Home}/>
+        <Suspense fallback={<div>...Loading</div>}>
+            <div className="container">
+        <Switch>
+            <Route path="/" component={Home}/>
             <Route path="/home" component={Home}/>
             <Route path="/cart" component={ShoppingCart}/>
-          </Switch>
+            </Switch>
+         </div>
         </Suspense>
         <Footer/>
     </Fragment>

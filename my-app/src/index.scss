@@ -104,3 +104,6 @@ input[name="search"]{display: none}
           button{border: 1px solid grey;border-radius: 50%;}
       }
 }
+@media only screen and (max-width: 600px) {
+  .top-bar{height: auto;}
+}

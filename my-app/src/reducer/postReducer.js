@@ -12,8 +12,7 @@ export const postReducer = (state = initialstate, action) => {
         case 'cartGet':
             return {...state,addCart:[...state.addCart,action.payload]}
         case "Count":
-            addCart[action.index].Count=(action.payload);
-            return {...state,addCart}
+            return {...state,addCart:[...state.addCart[action.index].Count,action.payload]};
         case "Filter":
                 return {...state,Sort: action.payload}
         case "SetSearch":
