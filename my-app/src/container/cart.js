@@ -1,44 +1,35 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-class ShoppingCart extends Component {
+class Shoppingcart extends Component {
     constructor(props){
         super(props)
         this.state={
             count:1,
             itemTotal:0,
-            //discount:0,
             Etotal:0
         }
     }
     ETotal=0;
     ItemTotal=0;
-   // discount=0;
     componentDidMount(){
-        this.props.AddCart.forEach((user,i)=>{
+        this.props.AddCarted.forEach((user,i)=>{
             this.ItemTotal+=user.Count*user.price;
-            //this.discount +=user.Count*user.price*user.discount/100;
         })
-       // this.ETotal =this.ItemTotal-this.discount;  
         this.setState({ itemTotal:this.ItemTotal})
     }
     componentDidUpdate(previousProps, previousState){
-       //let ETotal=0;
        let ItemTotal=0;
-       //let discount=0;
-        this.props.AddCart.forEach((user,i)=>{
+        this.props.AddCarted.forEach((user,i)=>{
             ItemTotal+=user.Count*user.price;
-           // discount +=user.Count*user.price*user.discount/100;
         })
-        //console.log(ItemTotal)
-        //ETotal =ItemTotal-discount;
         if (previousProps !== this.props) {
         this.setState({itemTotal:ItemTotal})
         }
     }
     AddCart=()=>{
-        if(!this.props.AddCart || this.props.AddCart.length  === 0)
+        if(!this.props.AddCarted || this.props.AddCarted.length  === 0)
         return (<p>Cart Empty</p>)
-       return this.props.AddCart.map((user,i)=>{
+       return this.props.AddCarted.map((user,i)=>{
            return (
                <div key={i} className="d-flex cartContiner">
                    <img src={user.image} alt="" />
@@ -48,11 +39,11 @@ class ShoppingCart extends Component {
            <div className="discount">{user.discount +'% Off'}</div>
                </div>
                <div className="CountContainer">
-                   <button onClick={()=>this.props.RemoveCount(user.Count,this.props.AddCart.indexOf(user))}>-</button>
+                   <button onClick={()=>this.props.RemoveCount(user.Count,this.props.AddCarted.indexOf(user))}>-</button>
                     <span>{user.Count}</span>
-                    <button onClick={()=>{this.props.AddCount(user.Count,this.props.AddCart.indexOf(user))}}>+</button>
+                    <button onClick={()=>{this.props.AddCount(user.Count,this.props.AddCarted.indexOf(user))}}>+</button>
                </div>
-               <div><button onClick={()=>this.props.cartAction(this.props.AddCart.indexOf(user))}>Remove</button></div>
+               <div><button onClick={()=>this.props.cartAction(this.props.AddCarted.indexOf(user))}>Remove</button></div>
                </div>
            )
        })
@@ -60,8 +51,8 @@ class ShoppingCart extends Component {
     render() { 
         return (
         <div className="row">
-            <div className="col-lg-7">{this.AddCart()}</div>
-                <div className="col-lg-5">
+            <div className="columns medium-7 large-7">{this.AddCart()}</div>
+                <div className="columns medium-5 large-5">
                     <table>
                     <thead>
                         <tr>
@@ -69,12 +60,8 @@ class ShoppingCart extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Price({this.props.AddCart.length} items)</td>
+                        <tr><td>Price({this.props.AddCarted.length} items)</td>
                         <td>{this.state.itemTotal}</td>
-                    </tr>
-                    <tr>
-                        <td>Discount</td>
-                        <td>{this.state.discount}</td>
                     </tr>
                     </tbody>
                     <tfoot>
@@ -89,6 +76,6 @@ class ShoppingCart extends Component {
     }
 }
 const mapStateToProps=(state)=>({
-    AddCart:state.list.addCart,
+    AddCarted:state.list.addCart
 })
-export default connect(mapStateToProps)(ShoppingCart);
+export default connect(mapStateToProps)(Shoppingcart);

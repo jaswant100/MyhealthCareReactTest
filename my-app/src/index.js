@@ -1,9 +1,9 @@
 import React, {Suspense,Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import '../node_modules/foundation-sites/dist/css/foundation.min.css'
+import '../node_modules/foundation-sites/dist/css/foundation.min.css';
 import Home from './container/home';
-import ShoppingCart from './container/cart'
+import Shoppingcart from './container/cart'
 import Header from './container/header'
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
@@ -17,19 +17,19 @@ import { createBrowserHistory } from 'history';
 import { Footer } from './container/footer';
 const History =createBrowserHistory();
 const middleware= applyMiddleware(thunk,createLogger());
-export const Store=createStore(allreducer,composeWithDevTools(middleware))
+export const Store=createStore(allreducer,composeWithDevTools(middleware));
 ReactDOM.render(
   <Provider store={Store}>
     <Router history ={History}>
       <Fragment>
         <Header/>
-        <Suspense fallback={<div>...Loading</div>}>
+        <Suspense fallback={<span>...Loading</span>}>
             <div className="container">
-        <Switch>
-            <Route path="/" component={Home}/>
+         <Switch>
+            <Route exact path="/" component={Home}/>
             <Route path="/home" component={Home}/>
-            <Route path="/cart" component={ShoppingCart}/>
-            </Switch>
+            <Route path="/cart" component={Shoppingcart}/>
+            </Switch> 
          </div>
         </Suspense>
         <Footer/>
