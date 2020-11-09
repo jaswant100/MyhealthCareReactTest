@@ -1,17 +1,19 @@
 import React, { Component,Fragment } from 'react';
 import {connect} from 'react-redux'
-import {addCart} from '../action'
+import {addCart} from '../action';
+import $ from 'jquery';
 class Shoppinglist extends Component {
     constructor(props) {
         super(props);
         this.state = {}
-      
     }
 
-    addcart(cartid){
-        let {Glist}=this.props
-        let cart=Glist.filter(data=>data.id == cartid);
-        addCart(cart[0])
+    addcart=(cartid,e)=>{
+        let {Glist}=this.props;
+        let cart=Glist.filter(data=>data.id == e.target.value);
+        addCart({...cart[0],Count:1});
+        $(e.target).attr({disabled:'disabled'})
+
     }
     onload(){
         let {Glist,SortRatio, Search}=this.props
@@ -72,7 +74,7 @@ class Shoppinglist extends Component {
                         <span className="Sdisplay">{data.price.display}</span>
                         <span className="Sdiscount">{data.discount}%off</span>
                     </div>
-                    <button className="cart" onClick={()=>this.addcart(data.id)}>Add to Cart</button>
+                    <button className="cart" value={data.id} disabled={false} onClick={this.addcart.bind(data.id,this)}>Add to Cart</button>
             </div>
             ) 
         })

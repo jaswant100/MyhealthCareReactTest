@@ -34,27 +34,27 @@ export const SetFilterHighLow=(Desc)=> {
     })
 }
 export const Removecart=(removeindex)=> {
-    return {
+  Store.dispatch({
         type: "RemoveCart",
         payload:removeindex
-      }
+      })
   }
   export const Addcount=(count,index)=> {
     if(count > 0){
-    return {
+      Store.dispatch({
         type: "Count",
         payload:count+1,
         index:index
-      }
+      })
     }
   }
   export const Removecount=(count,index)=> {
     if(count >= 2){
-    return {
+      Store.dispatch({
         type: "Count",
         payload:count-1,
         index:index
-      }
+      })
     }
-    return {type:"null"}
+   // return {type:"null"}
   }

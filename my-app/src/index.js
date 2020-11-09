@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { Router,Route,Switch } from 'react-router-dom';
+import {BrowserRouter, Router,Route,Switch } from 'react-router-dom';
 import thunk from "redux-thunk";
 import {allreducer} from './reducer'
 import { applyMiddleware, createStore } from 'redux';
@@ -20,21 +20,21 @@ const middleware= applyMiddleware(thunk,createLogger());
 export const Store=createStore(allreducer,composeWithDevTools(middleware));
 ReactDOM.render(
   <Provider store={Store}>
-    <Router history ={History}>
+    <BrowserRouter history ={History}>
       <Fragment>
-        <Header/>
+        <Header />
         <Suspense fallback={<span>...Loading</span>}>
-            <div className="container">
-         <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/home" component={Home}/>
-            <Route path="/cart" component={Shoppingcart}/>
-            </Switch> 
-         </div>
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/home" component={Home} />
+              <Route path="/cart" component={Shoppingcart} />
+            </Switch>
+          </div>
         </Suspense>
-        <Footer/>
-    </Fragment>
-    </Router>
+        <Footer />
+      </Fragment>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

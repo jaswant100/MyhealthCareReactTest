@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import {Removecart,Addcount,Removecount} from '../action';
 class Shoppingcart extends Component {
     constructor(props){
         super(props)
@@ -13,14 +14,14 @@ class Shoppingcart extends Component {
     ItemTotal=0;
     componentDidMount(){
         this.props.AddCarted.forEach((user,i)=>{
-            this.ItemTotal+=user.Count*user.price;
+            this.ItemTotal+=user.Count*user.price.actual;
         })
         this.setState({ itemTotal:this.ItemTotal})
     }
     componentDidUpdate(previousProps, previousState){
        let ItemTotal=0;
         this.props.AddCarted.forEach((user,i)=>{
-            ItemTotal+=user.Count*user.price;
+            ItemTotal+=user.Count*user.price.actual;
         })
         if (previousProps !== this.props) {
         this.setState({itemTotal:ItemTotal})
@@ -39,11 +40,11 @@ class Shoppingcart extends Component {
            <div className="discount">{user.discount +'% Off'}</div>
                </div>
                <div className="CountContainer">
-                   <button onClick={()=>this.props.RemoveCount(user.Count,this.props.AddCarted.indexOf(user))}>-</button>
+                   <button onClick={()=>Removecount(user.Count,this.props.AddCarted.indexOf(user))}>-</button>
                     <span>{user.Count}</span>
-                    <button onClick={()=>{this.props.AddCount(user.Count,this.props.AddCarted.indexOf(user))}}>+</button>
+                    <button onClick={()=>Addcount(user.Count,this.props.AddCarted.indexOf(user))}>+</button>
                </div>
-               <div><button onClick={()=>this.props.cartAction(this.props.AddCarted.indexOf(user))}>Remove</button></div>
+               <div><button onClick={()=>Removecart(this.props.AddCarted.indexOf(user))}>Remove</button></div>
                </div>
            )
        })
@@ -76,6 +77,7 @@ class Shoppingcart extends Component {
     }
 }
 const mapStateToProps=(state)=>({
-    AddCarted:state.list.addCart
+    AddCarted:state.list.addCart,
+    Count:state.list.Count
 })
 export default connect(mapStateToProps)(Shoppingcart);

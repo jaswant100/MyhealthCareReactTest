@@ -90,16 +90,17 @@ input[name="search"]{display: none}
   height: 130px;
   margin-bottom: 20px;
   align-items: center;
+  display: flex;
   justify-content: space-between;
   .itemName{
       max-width:250px;
       width:100%
 
   }
-  img{width:100px}
+  img{width:100px; height:100%}
   .price{color:black; display: inline;}
   .discount{color:green; float: right;}
-  button{color:black;text-transform: uppercase;text-decoration: none;    background: none;
+  button{color:black;text-transform: uppercase;text-decoration: none;    background: none; padding:5px;
       border: none;}
       .CountContainer{
           button{border: 1px solid grey;border-radius: 50%;}
