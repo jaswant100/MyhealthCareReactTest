@@ -28,8 +28,9 @@ class Shoppingcart extends Component {
         }
     }
     AddCart=()=>{
-        if(!this.props.AddCarted || this.props.AddCarted.length  === 0)
+        if(!this.props.AddCarted || this.props.AddCarted.length  === 0 || typeof this.props.AddCarted == undefined)
         return (<p>Cart Empty</p>)
+        console.log(this.props.AddCart)
        return this.props.AddCarted.map((user,i)=>{
            return (
                <div key={i} className="d-flex cartContiner">
@@ -52,8 +53,8 @@ class Shoppingcart extends Component {
     render() { 
         return (
         <div className="row">
-            <div className="columns medium-7 large-7">{this.AddCart()}</div>
-                <div className="columns medium-5 large-5">
+            <div className="columns small-12 medium-7 large-7">{this.AddCart()}</div>
+                <div className="columns small-12 medium-5 large-5">
                     <table>
                     <thead>
                         <tr>

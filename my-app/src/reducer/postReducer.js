@@ -12,12 +12,15 @@ export const postReducer = (state = initialstate, action) => {
         case 'cartGet':
             return {...state,addCart:[...state.addCart,action.payload]}
         case "Count":
-           // let count={...state.addCart[action.index],Count:action.payload};
-            //console.log(count)
-           // let addCart1=[...state.addCart[action.index],Count:action.payload]
-           return {...state};
+            let addCart1=[...state.addCart];
+            addCart1[action.index].Count=action.payload;
+           return {...state,addCart:addCart1};;
         case "Filter":
                 return {...state,Sort: action.payload}
+        case "RemoveCart":
+            let addCart2=[...state.addCart];
+            addCart2.splice(action.payload, 1);
+            return {...state,addCart:addCart2};
         case "SetSearch":
                     return {...state,Search:action.payload}
         default:
